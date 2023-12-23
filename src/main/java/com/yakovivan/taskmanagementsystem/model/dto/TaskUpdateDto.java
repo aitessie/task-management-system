@@ -8,6 +8,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Dto для обновления задачи.
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

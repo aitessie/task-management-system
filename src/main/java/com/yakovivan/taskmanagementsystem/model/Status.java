@@ -3,6 +3,9 @@ package com.yakovivan.taskmanagementsystem.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * Статусы задач.
+ */
 @AllArgsConstructor
 @Getter
 public enum Status {

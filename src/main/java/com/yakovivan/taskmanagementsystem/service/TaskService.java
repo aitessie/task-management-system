@@ -1,7 +1,7 @@
 package com.yakovivan.taskmanagementsystem.service;
 
 import com.yakovivan.taskmanagementsystem.exception.TaskManagementSystemException;
-import com.yakovivan.taskmanagementsystem.model.PageDto;
+import com.yakovivan.taskmanagementsystem.model.dto.PageDto;
 import com.yakovivan.taskmanagementsystem.model.Status;
 import com.yakovivan.taskmanagementsystem.model.TaskFilterColumnName;
 import com.yakovivan.taskmanagementsystem.model.TaskSortColumnName;
@@ -23,13 +23,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Сервис для обработки бизнес логики связанной с задачами.
+ */
 @Service
 public class TaskService {
 
     private final TaskRepository taskRepository;
     private final ModelMapper modelMapper;
     private final Map<TaskFilterColumnName, BaseSearcher> searchers;
-
 
     public TaskService(TaskRepository taskRepository, ModelMapper modelMapper, List<BaseSearcher> searcherList) {
         this.taskRepository = taskRepository;
@@ -38,11 +40,21 @@ public class TaskService {
                 .collect(Collectors.toMap(BaseSearcher::getColumnName, searcher -> searcher));
     }
 
+    /**
+     * Создание задачи.
+     *
+     * @param dto dto для создания задачи
+     */
     public void createTask(TaskCreateDto dto) {
         taskRepository.save(new TaskEntity(dto.getTitle(), dto.getDescription(), Status.TO_DO, dto.getPriority(),
                 "", dto.getAssignee(), LocalDateTime.now(), LocalDateTime.now(), null));
     }
 
+    /**
+     * Обновление полей задачи.
+     *
+     * @param dto dto для обновления задачи
+     */
     public void updateTask(TaskUpdateDto dto) {
         TaskEntity taskEntity = getTaskEntityById(dto.getId());
 
@@ -60,11 +72,16 @@ public class TaskService {
         taskRepository.save(taskEntity);
     }
 
+    /**
+     * Удаление задачи по ID.
+     *
+     * @param id ID задачи в БД
+     */
     public void deleteTask(Long id) {
         taskRepository.deleteById(id);
     }
 
-    public TaskEntity getTaskEntityById(Long taskId) {
+    TaskEntity getTaskEntityById(Long taskId) {
         return taskRepository.findById(taskId).orElseThrow(() ->
                 new TaskManagementSystemException(String.format("Not found task with id=%d", taskId)));
     }
@@ -74,7 +91,7 @@ public class TaskService {
      *
      * @param taskSortColumnName   название столбца по которому производиться сортировка
      * @param direction            направление сортировки
-     * @param pageNumber           номер заправшиваемой страницы
+     * @param pageNumber           номер запрашиваемой страницы
      * @param pageSize             количество задач на одной странице
      * @param taskFilterColumnName столбец для фильтрации
      * @param searchParam          ключевое слово поиска

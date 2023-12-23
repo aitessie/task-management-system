@@ -3,6 +3,9 @@ package com.yakovivan.taskmanagementsystem.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * Перечисление названий столбцов для сортировки.
+ */
 @AllArgsConstructor
 @Getter
 public enum TaskSortColumnName {

@@ -21,6 +21,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 
+/**
+ * Сущность задачи.
+ */
 @Entity
 @Table(name = "task")
 @NoArgsConstructor
@@ -64,7 +67,7 @@ public class TaskEntity {
     @Column(name = "complete_dttm")
     private LocalDateTime completeDttm;
 
-    @OneToMany(mappedBy = "taskEntity") // стр 34 05_JPA
+    @OneToMany(mappedBy = "taskEntity")
     private List<CommentEntity> comments;
 
     public TaskEntity(String title, String description, Status status, Priority priority, String author,

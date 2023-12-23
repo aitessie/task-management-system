@@ -7,6 +7,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+/**
+ * Сервис для поиска по названию.
+ */
 @Service
 public class TitleSearcher extends BaseSearcher {
 

@@ -6,6 +6,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+/**
+ * Репозиторий для общения с таблицей задач.
+ */
 @Repository
 public interface TaskRepository extends JpaRepository<TaskEntity, Long> {
 
@@ -20,7 +23,4 @@ public interface TaskRepository extends JpaRepository<TaskEntity, Long> {
     Page<TaskEntity> findByAuthorContains(String author, Pageable page);
 
     Page<TaskEntity> findByAssigneeContains(String assignee, Pageable page);
-
-    //todo как обеспечить сортировку по каждому столбцу
-
 }

@@ -1,6 +1,5 @@
 package com.yakovivan.taskmanagementsystem.model.entity;
 
-import com.yakovivan.taskmanagementsystem.criteria.TaskSearchParam;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +8,9 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+/**
+ * Сущность комментария.
+ */
 @Entity
 @Table(name = "comment")
 @NoArgsConstructor

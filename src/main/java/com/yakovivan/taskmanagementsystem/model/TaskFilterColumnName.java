@@ -3,6 +3,9 @@ package com.yakovivan.taskmanagementsystem.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * Перечисление названий столбцов для фильтрации.
+ */
 @AllArgsConstructor
 @Getter
 public enum TaskFilterColumnName {
