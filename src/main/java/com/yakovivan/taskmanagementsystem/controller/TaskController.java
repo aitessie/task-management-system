@@ -6,6 +6,9 @@ import com.yakovivan.taskmanagementsystem.model.TaskSortColumnName;
 import com.yakovivan.taskmanagementsystem.model.dto.TaskCreateDto;
 import com.yakovivan.taskmanagementsystem.model.dto.TaskDto;
 import com.yakovivan.taskmanagementsystem.model.dto.TaskUpdateDto;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import com.yakovivan.taskmanagementsystem.service.TaskService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +23,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/task")
 public class TaskController {
 
+    //http://localhost:8085/swagger-ui/index.html путь к сваггеру
+
     private final TaskService service;
 
     /**
@@ -28,6 +33,9 @@ public class TaskController {
      * @param dto dto для создания задачи
      */
     @PostMapping
+    @Operation(summary = "Создание задачи")
+    @ApiResponses({@ApiResponse(responseCode = "200"),
+            @ApiResponse(responseCode = "401"), @ApiResponse(responseCode = "500")})
     public void createTask(@Valid @RequestBody TaskCreateDto dto) {
         service.createTask(dto);
     }
@@ -38,6 +46,9 @@ public class TaskController {
      * @param dto dto для обновления задачи
      */
     @PutMapping
+    @Operation(summary = "Обновление полей задачи")
+    @ApiResponses({@ApiResponse(responseCode = "200"),
+            @ApiResponse(responseCode = "401"), @ApiResponse(responseCode = "500")})
     public void updateTask(@Valid @RequestBody TaskUpdateDto dto) {
         service.updateTask(dto);
     }
@@ -48,6 +59,9 @@ public class TaskController {
      * @param id ID задачи в БД
      */
     @DeleteMapping("/{id}")
+    @Operation(summary = "Удаление задачи по ID")
+    @ApiResponses({@ApiResponse(responseCode = "200"),
+            @ApiResponse(responseCode = "401"), @ApiResponse(responseCode = "500")})
     public void deleteTask(@PathVariable Long id) {
         service.deleteTask(id);
     }
@@ -64,6 +78,9 @@ public class TaskController {
      * @return {@link PageDto} содержащая задачи и информацию о пагинации
      */
     @GetMapping()
+    @Operation(summary = "Получение списка задач постранично и с сортировкой")
+    @ApiResponses({@ApiResponse(responseCode = "200"),
+            @ApiResponse(responseCode = "401"), @ApiResponse(responseCode = "500")})
     public PageDto<TaskDto> getTasksSortedByColumnWithFilter(@RequestParam(required = false, defaultValue = "TITLE") TaskSortColumnName taskSortColumnName,
                                                              @RequestParam(required = false, defaultValue = "ASC") Sort.Direction direction,
                                                              @RequestParam(required = false, defaultValue = "0") Integer pageNumber,

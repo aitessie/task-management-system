@@ -12,7 +12,7 @@ CREATE TABLE task
     create_dttm   TIMESTAMP    NOT NULL,
     update_dttm   TIMESTAMP    NOT NULL,
     complete_dttm TIMESTAMP
-)
+);
 
 CREATE SEQUENCE IF NOT EXISTS task_id_seq START WITH 1;
 
@@ -46,7 +46,7 @@ CREATE TABLE comment
     comment     VARCHAR(1024) NOT NULL,
     create_dttm TIMESTAMP     NOT NULL,
     author      VARCHAR(64)   NOT NULL
-)
+);
 
 CREATE SEQUENCE IF NOT EXISTS comment_id_seq START WITH 1;
 
