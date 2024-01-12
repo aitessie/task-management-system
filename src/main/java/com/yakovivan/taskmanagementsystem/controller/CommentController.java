@@ -26,8 +26,7 @@ public class CommentController {
      */
     @PostMapping
     @Operation(summary = "Создание комментария")
-    @ApiResponses({@ApiResponse(responseCode = "200"),
-            @ApiResponse(responseCode = "401"), @ApiResponse(responseCode = "500")})
+    @ApiResponses({@ApiResponse(responseCode = "200"), @ApiResponse(responseCode = "500")})
     public void createComment(@Valid @RequestBody CommentCreateDto dto) {
         service.createComment(dto);
     }
@@ -39,8 +38,7 @@ public class CommentController {
      */
     @DeleteMapping("/{id}")
     @Operation(summary = "Удаление комментария")
-    @ApiResponses({@ApiResponse(responseCode = "200"),
-            @ApiResponse(responseCode = "401"), @ApiResponse(responseCode = "500")})
+    @ApiResponses({@ApiResponse(responseCode = "200"), @ApiResponse(responseCode = "500")})
     public void deleteComment(@PathVariable Long id) {
         service.deleteComment(id);
     }

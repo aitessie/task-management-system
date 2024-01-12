@@ -98,7 +98,8 @@ public class TaskService {
      * @return {@link PageDto} содержащая задачи и информацию о пагинации
      */
     public PageDto<TaskDto> getTasksSortedByColumn(TaskSortColumnName taskSortColumnName, Sort.Direction direction,
-                                                   Integer pageNumber, Integer pageSize, TaskFilterColumnName taskFilterColumnName, String searchParam) {
+                                                   Integer pageNumber, Integer pageSize,
+                                                   TaskFilterColumnName taskFilterColumnName, String searchParam) {
 
         Pageable page = PageRequest.of(pageNumber, pageSize,
                 Sort.by(direction, taskSortColumnName.getFieldName()));

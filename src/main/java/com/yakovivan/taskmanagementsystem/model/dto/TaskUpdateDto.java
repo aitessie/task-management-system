@@ -2,6 +2,7 @@ package com.yakovivan.taskmanagementsystem.model.dto;
 
 import com.yakovivan.taskmanagementsystem.model.Priority;
 import com.yakovivan.taskmanagementsystem.model.Status;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,10 +18,10 @@ import lombok.Setter;
 @Setter
 public class TaskUpdateDto {
 
-    @NotNull
+    @NotBlank
     private Long id;
 
-    @NotNull
+    @NotBlank
     private String title;
 
     private String description;

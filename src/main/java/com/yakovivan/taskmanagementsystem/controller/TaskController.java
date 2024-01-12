@@ -34,8 +34,7 @@ public class TaskController {
      */
     @PostMapping
     @Operation(summary = "Создание задачи")
-    @ApiResponses({@ApiResponse(responseCode = "200"),
-            @ApiResponse(responseCode = "401"), @ApiResponse(responseCode = "500")})
+    @ApiResponses({@ApiResponse(responseCode = "200"), @ApiResponse(responseCode = "500")})
     public void createTask(@Valid @RequestBody TaskCreateDto dto) {
         service.createTask(dto);
     }
@@ -47,8 +46,7 @@ public class TaskController {
      */
     @PutMapping
     @Operation(summary = "Обновление полей задачи")
-    @ApiResponses({@ApiResponse(responseCode = "200"),
-            @ApiResponse(responseCode = "401"), @ApiResponse(responseCode = "500")})
+    @ApiResponses({@ApiResponse(responseCode = "200"), @ApiResponse(responseCode = "500")})
     public void updateTask(@Valid @RequestBody TaskUpdateDto dto) {
         service.updateTask(dto);
     }
@@ -60,8 +58,7 @@ public class TaskController {
      */
     @DeleteMapping("/{id}")
     @Operation(summary = "Удаление задачи по ID")
-    @ApiResponses({@ApiResponse(responseCode = "200"),
-            @ApiResponse(responseCode = "401"), @ApiResponse(responseCode = "500")})
+    @ApiResponses({@ApiResponse(responseCode = "200"), @ApiResponse(responseCode = "500")})
     public void deleteTask(@PathVariable Long id) {
         service.deleteTask(id);
     }
@@ -78,15 +75,15 @@ public class TaskController {
      * @return {@link PageDto} содержащая задачи и информацию о пагинации
      */
     @GetMapping()
-    @Operation(summary = "Получение списка задач постранично и с сортировкой")
-    @ApiResponses({@ApiResponse(responseCode = "200"),
-            @ApiResponse(responseCode = "401"), @ApiResponse(responseCode = "500")})
-    public PageDto<TaskDto> getTasksSortedByColumnWithFilter(@RequestParam(required = false, defaultValue = "TITLE") TaskSortColumnName taskSortColumnName,
-                                                             @RequestParam(required = false, defaultValue = "ASC") Sort.Direction direction,
-                                                             @RequestParam(required = false, defaultValue = "0") Integer pageNumber,
-                                                             @RequestParam(required = false, defaultValue = "10") Integer pageSize,
-                                                             @RequestParam(required = false) TaskFilterColumnName taskFilterColumnName,
-                                                             @RequestParam(required = false) String searchParam) {
+    @Operation(summary = "Получение списка задач постранично с сортировкой и фильтрацией по одному полю")
+    @ApiResponses({@ApiResponse(responseCode = "200"), @ApiResponse(responseCode = "500")})
+    public PageDto<TaskDto> getTasksSortedByColumnWithFilter(
+            @RequestParam(required = false, defaultValue = "TITLE") TaskSortColumnName taskSortColumnName,
+            @RequestParam(required = false, defaultValue = "ASC") Sort.Direction direction,
+            @RequestParam(required = false, defaultValue = "0") Integer pageNumber,
+            @RequestParam(required = false, defaultValue = "10") Integer pageSize,
+            @RequestParam(required = false) TaskFilterColumnName taskFilterColumnName,
+            @RequestParam(required = false) String searchParam) {
 
         return service.getTasksSortedByColumn(taskSortColumnName, direction, pageNumber, pageSize, taskFilterColumnName, searchParam);
     }
