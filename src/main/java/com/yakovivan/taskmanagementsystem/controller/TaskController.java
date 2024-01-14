@@ -1,5 +1,6 @@
 package com.yakovivan.taskmanagementsystem.controller;
 
+import com.yakovivan.taskmanagementsystem.criteria.TaskSearchParam;
 import com.yakovivan.taskmanagementsystem.model.dto.PageDto;
 import com.yakovivan.taskmanagementsystem.model.TaskFilterColumnName;
 import com.yakovivan.taskmanagementsystem.model.TaskSortColumnName;
