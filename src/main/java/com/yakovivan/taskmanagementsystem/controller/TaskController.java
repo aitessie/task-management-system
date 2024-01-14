@@ -85,6 +85,35 @@ public class TaskController {
             @RequestParam(required = false) TaskFilterColumnName taskFilterColumnName,
             @RequestParam(required = false) String searchParam) {
 
-        return service.getTasksSortedByColumn(taskSortColumnName, direction, pageNumber, pageSize, taskFilterColumnName, searchParam);
+        return service.getTasksSortedByColumn(
+                taskSortColumnName, direction, pageNumber, pageSize, taskFilterColumnName, searchParam);
+    }
+
+    /**
+     * Получение списка задач постранично с сортировкой и фильтрацией по нескольким полям.
+     *
+     * @param taskSortColumnName название столбца по которому производиться сортировка
+     * @param direction          направление сортировки
+     * @param pageNumber         номер запрашиваемой страницы
+     * @param pageSize           количество задач на одной странице
+     * @param taskSearchParam    параметры фильтрации
+     * @return {@link PageDto} содержащая задачи и информацию о пагинации
+     */
+    @PostMapping("/search")
+    @Operation(summary = "Получение списка задач постранично с сортировкой и фильтрацией по нескольким полям")
+    @ApiResponses({@ApiResponse(responseCode = "200"), @ApiResponse(responseCode = "500")})
+    public PageDto<TaskDto> getTasksWithFilter(
+            @RequestParam(required = false, defaultValue = "TITLE") TaskSortColumnName taskSortColumnName,
+            @RequestParam(required = false, defaultValue = "ASC") Sort.Direction direction,
+            @RequestParam(required = false, defaultValue = "0") Integer pageNumber,
+            @RequestParam(required = false, defaultValue = "10") Integer pageSize,
+            @RequestBody(required = false) TaskSearchParam taskSearchParam) {
+
+        taskSearchParam.handleIncorrectData(taskSearchParam.getCreateDttmStart(),taskSearchParam.getCreateDttmEnd());
+        taskSearchParam.handleIncorrectData(taskSearchParam.getUpdateDttmStart(),taskSearchParam.getUpdateDttmEnd());
+        taskSearchParam.handleIncorrectData(taskSearchParam.getCompleteDttmStart(),taskSearchParam.getCompleteDttmEnd());
+
+        return service.getTasksFilteredAndSorted(
+                taskSortColumnName, direction, pageNumber, pageSize, taskSearchParam);
     }
 }

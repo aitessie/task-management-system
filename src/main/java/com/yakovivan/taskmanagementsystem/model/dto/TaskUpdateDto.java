@@ -18,7 +18,7 @@ import lombok.Setter;
 @Setter
 public class TaskUpdateDto {
 
-    @NotBlank
+    @NotNull
     private Long id;
 
     @NotBlank
