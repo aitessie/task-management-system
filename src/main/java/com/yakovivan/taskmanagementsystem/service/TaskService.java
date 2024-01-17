@@ -137,6 +137,7 @@ public class TaskService {
 
         Page<TaskEntity> pageDb;
 
+
         if (taskSearchParam == null) {
             pageDb = taskRepository.findAll(page);
         } else {
@@ -153,8 +154,7 @@ public class TaskService {
                             .and(updateDttmEndLessThan(taskSearchParam.getUpdateDttmEnd()))
                             .and(completeDttmStartGreaterThan(taskSearchParam.getCompleteDttmStart()))
                             .and(completeDttmEndLessThan(taskSearchParam.getCompleteDttmEnd()))
-                            .and(isAssigneeNull(taskSearchParam.getHasAssignee())),
-                    page);
+                            .and(isAssigneeNull(taskSearchParam.getHasAssignee())), page);
         }
 
         List<TaskDto> content = pageDb.getContent().stream()
