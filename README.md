@@ -1,23 +1,17 @@
-# Task-management-system
-Демо проект для демонстрации навыков
-## About:
+# Task Management System
+
 Приложение для ведения списка задач разных пользователей.
-Возможно создание новых задач, редактирование и удаление существующих,
-и получение списка задач по различным фильтрам.
+Можно создавать новые задачи, редактировать, удалять существующие,
+а также получать список задач по различным фильтрам.
 
-## In development:
-В разработке находится реализация Spring Security.
-Также планируется:
+ссылка на Swagger: http://localhost:8085/swagger-ui/index.html
+
+## В разработке:
+* реализация Spring Security
 * доработка функционала комментирования задач 
-* покрытие проекта тестами 
-* добавление Docker
+* покрытие функционала тестами
 
-## Manual:
-* Frontend адрес: http://localhost:8085/
-* Backend Swagger: http://localhost:8085/swagger-ui/index.html
-* Дефолтный пользователь: admin admin
-
-## Technology stack:
+## Стэк:
 * Language: Java
 * Framework: Spring Boot
 * Build: Maven
@@ -26,4 +20,3 @@
 * Swagger: springdoc-openapi
 * Utils: Criteria API, Lombok
 
-## API [/task](http://localhost:8085/task)
