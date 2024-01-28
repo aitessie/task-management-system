@@ -19,7 +19,7 @@ CREATE SEQUENCE IF NOT EXISTS task_id_seq START WITH 1;
 COMMENT
 ON TABLE task IS 'Задача';
 COMMENT
-ON COLUMN task.task_id IS 'Идентификатор';
+ON COLUMN task.task_id IS 'Идентификатор задачи';
 COMMENT
 ON COLUMN task.title IS 'Название';
 COMMENT
@@ -62,3 +62,22 @@ COMMENT
 ON COLUMN comment.create_dttm IS 'Дата создания';
 COMMENT
 ON COLUMN comment.author IS 'Автор';
+
+CREATE TABLE tms_user
+(
+    tms_user_id BIGINT CONSTRAINT tms_user_id_pk PRIMARY KEY,
+    name        VARCHAR(256) NOT NULL,
+    password    VARCHAR(256) NOT NULL,
+    role        VARCHAR(256) NOT NULL,
+);
+
+CREATE SEQUENCE IF NOT EXISTS tms_user_id_seq START WITH 1;
+
+COMMENT
+ON TABLE tms_user IS 'Пользователь';
+COMMENT
+ON COLUMN tms_user.tms_user_id IS 'Идентификатор пользователя';
+COMMENT
+ON COLUMN tms_user.name IS 'Имя';
+COMMENT
+ON COLUMN tms_user.password IS 'Пароль';

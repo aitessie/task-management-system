@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 public class TaskController {
 
     //http://localhost:8085/swagger-ui/index.html путь к сваггеру
+    //todo проверить когда приходят hasAssignee = true и заполненный assignee
 
     private final TaskService service;
 
