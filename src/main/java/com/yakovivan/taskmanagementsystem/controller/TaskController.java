@@ -14,6 +14,7 @@ import jakarta.validation.Valid;
 import com.yakovivan.taskmanagementsystem.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -35,6 +36,7 @@ public class TaskController {
      * @param dto dto для создания задачи
      */
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
     @Operation(summary = "Создание задачи")
     @ApiResponses({@ApiResponse(responseCode = "200"), @ApiResponse(responseCode = "500")})
     public void createTask(@Valid @RequestBody TaskCreateDto dto) {
@@ -47,6 +49,7 @@ public class TaskController {
      * @param dto dto для обновления задачи
      */
     @PutMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
     @Operation(summary = "Обновление полей задачи")
     @ApiResponses({@ApiResponse(responseCode = "200"), @ApiResponse(responseCode = "500")})
     public void updateTask(@Valid @RequestBody TaskUpdateDto dto) {
@@ -59,6 +62,7 @@ public class TaskController {
      * @param id ID задачи в БД
      */
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @Operation(summary = "Удаление задачи по ID")
     @ApiResponses({@ApiResponse(responseCode = "200"), @ApiResponse(responseCode = "500")})
     public void deleteTask(@PathVariable Long id) {
@@ -77,6 +81,7 @@ public class TaskController {
      * @return {@link PageDto} содержащая задачи и информацию о пагинации
      */
     @GetMapping()
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
     @Operation(summary = "Получение списка задач постранично с сортировкой и фильтрацией по одному полю")
     @ApiResponses({@ApiResponse(responseCode = "200"), @ApiResponse(responseCode = "500")})
     public PageDto<TaskDto> getTasksSortedByColumnWithFilter(
@@ -102,6 +107,7 @@ public class TaskController {
      * @return {@link PageDto} содержащая задачи и информацию о пагинации
      */
     @PostMapping("/search")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
     @Operation(summary = "Получение списка задач постранично с сортировкой и фильтрацией по нескольким полям")
     @ApiResponses({@ApiResponse(responseCode = "200"), @ApiResponse(responseCode = "500")})
     public PageDto<TaskDto> getTasksWithFilter(

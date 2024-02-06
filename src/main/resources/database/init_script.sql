@@ -66,9 +66,9 @@ ON COLUMN comment.author IS 'Автор';
 CREATE TABLE tms_user
 (
     tms_user_id BIGINT CONSTRAINT tms_user_id_pk PRIMARY KEY,
-    name        VARCHAR(256) NOT NULL,
+    name        VARCHAR(256) NOT NULL UNIQUE,
     password    VARCHAR(256) NOT NULL,
-    role        VARCHAR(256) NOT NULL,
+    role        VARCHAR(16) NOT NULL,
 );
 
 CREATE SEQUENCE IF NOT EXISTS tms_user_id_seq START WITH 1;
